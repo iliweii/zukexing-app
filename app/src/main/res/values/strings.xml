@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">租客行</string>
+    <string name="title_home">主页</string>
+    <string name="title_dashboard">订单</string>
+    <string name="title_notifications">消息</string>
+    <string name="title_mine">我的</string>
+    <string name="saoyisao">扫一扫</string>
+</resources>
