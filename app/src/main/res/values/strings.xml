@@ -5,5 +5,25 @@
     <string name="title_notifications">消息</string>
     <string name="title_mine">我的</string>
     <string name="saoyisao">扫一扫</string>
+
     <string name="host">http://zukexing.com/</string>
+    <string name="amap_key">2783b54aa5662100cae8f7879d9a30fe</string>
+
+    <string name="app_info">开启共享式快捷租房新时代</string>
+    <string name="home_myhouse">我的房产</string>
+    <string name="home_myhouse_title">加入租客行房东</string>
+    <string name="home_myhouse_cont">闲置房屋价值立马变现</string>
+    <string name="home_myhouse_btn">立即加入</string>
+    <string name="home_wait_title">等待入住</string>
+    <string name="home_wait_default1">清风客栈(金鹰店)</string>
+    <string name="home_wait_default2">2021-06-13 - 2021-06-15，1间</string>
+    <string name="home_nav_reco">推荐</string>
+    <string name="home_nav_mini">时钟住</string>
+    <string name="home_nav_short">短期住</string>
+    <string name="home_nav_long">长期租</string>
+    <string name="search">搜索</string>
+    <string name="search2">搜一搜</string>
+    <string name="home_local_default">北京</string>
+    <string name="home_weather_default">晴 22℃</string>
+    <string name="home_content_nav">导航滑块</string>
 </resources>

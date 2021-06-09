@@ -35,18 +35,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:drawableRight="@drawable/ic_local"
-                    android:text="北京"
+                    android:text="@string/home_local_default"
                     android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/homeTopWeather"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="晴 22℃"
+                    android:text="@string/home_weather_default"
                     android:textColor="@color/black"
-                    android:textSize="8dp" />
+                    android:textSize="8sp" />
             </LinearLayout>
 
             <RelativeLayout
@@ -67,14 +67,16 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:paddingLeft="30dp"
-                    android:text="搜一搜"
+                    android:paddingRight="30dp"
+                    android:text="@string/search2"
                     android:textColor="@color/gray_8f"
-                    android:textSize="10dp" />
+                    android:textSize="10sp" />
 
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/search"
                     android:src="@drawable/ic_seacher"
                     android:translationX="16dp"
                     android:translationY="11.5dp" />
@@ -93,218 +95,193 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/homeBanner"
+        <ScrollView
+            android:id="@+id/homeScroll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_height="match_parent">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/feichi"
-                android:text="租客行"
-                android:textColor="@color/stdcolor"
-                android:textSize="30dp"
-                android:typeface="normal" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="开启共享式快捷租房新时代"
-                android:textColor="@color/black"
-                android:textSize="12dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/homeMyHouse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/rounded_corner_search_box2"
-            android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingTop="15dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="我的房产"
-                android:textColor="@color/stdcolor"
-                android:textSize="14dp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:background="@color/stdcolor"
-                android:minWidth="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#9D9D9D"
-                    android:minWidth="10dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:textSize="20sp"
-                    android:visibility="invisible" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="加入租客行房东"
-                        android:textColor="@color/black"
-                        android:textSize="14dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="闲置房屋价值立马变现"
-                        android:textColor="@color/black"
-                        android:textSize="10dp" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/homeHouseButton"
-                    android:layout_width="100dp"
-                    android:layout_height="38dp"
-                    android:text="立即加入" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/homeWaitHouse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/rounded_corner_search_box2"
-            android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingTop="15dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="15dp"
-            tools:layout_editor_absoluteX="45dp"
-            tools:layout_editor_absoluteY="105dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="等待入住"
-                android:textColor="@color/stdcolor"
-                android:textSize="14dp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:background="@color/stdcolor"
-                android:minWidth="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#9D9D9D"
-                    android:minWidth="10dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:textSize="20sp"
-                    android:visibility="invisible" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/homeWaitName"
+                <LinearLayout
+                    android:id="@+id/homeBanner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="清风客栈(金鹰店)"
-                    android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                <TextView
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/feichi"
+                        android:text="@string/app_name"
+                        android:textColor="@color/stdcolor"
+                        android:textSize="30sp"
+                        android:typeface="normal" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_info"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/homeMyHouse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="2021-06-13 - 2021-06-15，1间"
-                    android:textColor="@color/black"
-                    android:textSize="10dp" />
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rounded_corner_search_box2"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/home_myhouse"
+                        android:textColor="@color/stdcolor"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:background="@color/stdcolor"
+                        android:minWidth="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:background="#9D9D9D"
+                            android:minWidth="10dp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:textSize="20sp"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/home_myhouse_title"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/home_myhouse_cont"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/homeHouseButton"
+                            android:layout_width="100dp"
+                            android:layout_height="38dp"
+                            android:text="@string/home_myhouse_btn" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/homeWaitHouse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rounded_corner_search_box2"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="15dp"
+                    tools:layout_editor_absoluteX="45dp"
+                    tools:layout_editor_absoluteY="105dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/home_wait_title"
+                        android:textColor="@color/stdcolor"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:background="@color/stdcolor"
+                        android:minWidth="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:background="#9D9D9D"
+                            android:minWidth="10dp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:textSize="20sp"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/homeWaitName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_wait_default1"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/home_wait_default2"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/homeViewNav"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/homeViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.viewpager.widget.ViewPager>
+
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/homeNav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/homeNavReco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="推荐"
-                android:textAlignment="center"
-                android:textColor="@color/stdcolor"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/homeNavMini"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="时钟住"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="14dp" />
-
-            <TextView
-                android:id="@+id/homeNavShort"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="短期住"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="14dp" />
-
-            <TextView
-                android:id="@+id/homeNavLong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="长期租"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="14dp" />
-        </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 
