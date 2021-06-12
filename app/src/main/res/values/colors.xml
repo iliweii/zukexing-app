@@ -147,4 +147,5 @@
     <color name="gray_cc">#cccccc</color><!--灰色cc -->
     <color name="gray_8f">#8f8f8f</color><!--灰色8f -->
     <color name="stdcolor">#0e932e</color><!-- 标准色（图标主色）-->
+    <color name="stdhalfwhite">#88FFFFFF</color><!--半透明白 -->
 </resources>

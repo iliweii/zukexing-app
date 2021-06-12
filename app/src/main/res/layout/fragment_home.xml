@@ -268,17 +268,33 @@
 
                 </LinearLayout>
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/homeViewNav"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+<!--                <com.google.android.material.tabs.TabLayout-->
+<!--                    android:id="@+id/homeViewNav"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent" />-->
 
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/homeViewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+<!--                <androidx.viewpager.widget.ViewPager-->
+<!--                    android:id="@+id/homeViewPager"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="100dp">-->
 
-                </androidx.viewpager.widget.ViewPager>
+<!--                </androidx.viewpager.widget.ViewPager>-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="@string/home_listview_title"
+                    android:textColor="@color/stdcolor"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <ListView
+                    android:id="@+id/homeListview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
 
             </LinearLayout>
         </ScrollView>

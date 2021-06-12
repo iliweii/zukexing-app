@@ -48,6 +48,17 @@ public class House {
     private Integer wifi;
     private Integer chuifengji;
 
+    private String user_avater;
+    private String user_nick;
+    private String user_sex;
+    private String user_birth;
+    private String user_phone;
+    private Integer is_real;
+    private String real_name;
+    private String real_id;
+    private Integer exper;
+    private Integer is_landlord;
+
     public Integer getHouse_id() {
         return house_id;
     }
@@ -414,5 +425,85 @@ public class House {
 
     public void setChuifengji(Integer chuifengji) {
         this.chuifengji = chuifengji;
+    }
+
+    public String getUser_avater() {
+        return user_avater;
+    }
+
+    public void setUser_avater(String user_avater) {
+        this.user_avater = user_avater;
+    }
+
+    public String getUser_nick() {
+        return user_nick;
+    }
+
+    public void setUser_nick(String user_nick) {
+        this.user_nick = user_nick;
+    }
+
+    public String getUser_sex() {
+        return user_sex;
+    }
+
+    public void setUser_sex(String user_sex) {
+        this.user_sex = user_sex;
+    }
+
+    public String getUser_birth() {
+        return user_birth;
+    }
+
+    public void setUser_birth(String user_birth) {
+        this.user_birth = user_birth;
+    }
+
+    public String getUser_phone() {
+        return user_phone;
+    }
+
+    public void setUser_phone(String user_phone) {
+        this.user_phone = user_phone;
+    }
+
+    public Integer getIs_real() {
+        return is_real;
+    }
+
+    public void setIs_real(Integer is_real) {
+        this.is_real = is_real;
+    }
+
+    public String getReal_name() {
+        return real_name;
+    }
+
+    public void setReal_name(String real_name) {
+        this.real_name = real_name;
+    }
+
+    public String getReal_id() {
+        return real_id;
+    }
+
+    public void setReal_id(String real_id) {
+        this.real_id = real_id;
+    }
+
+    public Integer getExper() {
+        return exper;
+    }
+
+    public void setExper(Integer exper) {
+        this.exper = exper;
+    }
+
+    public Integer getIs_landlord() {
+        return is_landlord;
+    }
+
+    public void setIs_landlord(Integer is_landlord) {
+        this.is_landlord = is_landlord;
     }
 }

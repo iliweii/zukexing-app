@@ -6,8 +6,13 @@
     <string name="title_mine">我的</string>
     <string name="saoyisao">扫一扫</string>
 
+    <!-- 网络地址路径（需要修改hosts，写反向代理）-->
     <string name="host">http://zukexing.com/</string>
+    <!-- ip地址路径（当前网络ip地址，手机与电脑在同一路由器下，且没有ap隔离）-->
+    <!--    <string name="host">http://192.168.1.117:8082/</string>-->
     <string name="amap_key">2783b54aa5662100cae8f7879d9a30fe</string>
+    <string name="image_url_house">static/image/house/</string>
+    <string name="image_url_avater">static/image/avater/</string>
 
     <string name="app_info">开启共享式快捷租房新时代</string>
     <string name="home_myhouse">我的房产</string>
@@ -26,4 +31,16 @@
     <string name="home_local_default">北京</string>
     <string name="home_weather_default">晴 22℃</string>
     <string name="home_content_nav">导航滑块</string>
+    <string name="home_item_title_default">学生宿舍 1室1厅1卫 低价共享</string>
+    <string name="home_listview_title">房源推荐</string>
+    <string name="home_price_default">￥80/晚</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>

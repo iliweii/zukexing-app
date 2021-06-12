@@ -1,6 +1,6 @@
 package com.zukexing.app.ui.home;
 
-import android.graphics.Typeface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,7 +8,10 @@ import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,13 +46,9 @@ public class HomeFragment extends Fragment {
     private EditText homeTopSearchEdit;
     private HomeFragment that;
 
-    private TextView homeNavReco, homeNavMini, homeNavShort, homeNavLong;
-
-    private ViewPager homeViewPager;
-    private TabLayout homeViewNav;
-    private HomeViewPagerAdapter mAdapter;
-
     private List<House> houses;
+    private HomeListviewAdapter homeListviewAdapter;
+    private ListView homeListview;
 
     private Handler handler = new Handler(){
 
@@ -59,7 +58,7 @@ public class HomeFragment extends Fragment {
             switch (msg.what) {
                 case 1:
                     homeTopWeather.setText("");
-                    Toast.makeText(HomeFragment.this.getActivity(), "网络连接失败，请检查网络状态", Toast.LENGTH_LONG).show();
+                    Toast.makeText(HomeFragment.this.getActivity(), "网络连接失败，请检查网络状态", Toast.LENGTH_SHORT).show();
                     break;
                 case 2:
                     String obj[] = (String[]) msg.obj;
@@ -81,8 +80,10 @@ public class HomeFragment extends Fragment {
                     Gson gson = new Gson();
                     Type houseListType = new TypeToken<ArrayList<House>>(){}.getType();
                     houses = gson.fromJson(obj[0], houseListType);
-                    System.out.println("house:");
-                    System.out.println(houses.get(0).getHouse_title());
+                    // 设置主页 数据
+                    homeListviewAdapter = new HomeListviewAdapter(that.getContext(), R.layout.home_listview_item, houses);
+                    homeListview.setAdapter(homeListviewAdapter);
+                    setListViewHeightBasedOnChildren(homeListview);
                     break;
             }
         }
@@ -108,8 +109,10 @@ public class HomeFragment extends Fragment {
         homeTopSearchEdit.setFocusableInTouchMode(false);
         that = this;
 
+        homeListview = root.findViewById(R.id.homeListview);
 
-        // 这个忘记式干嘛的了
+
+        // 暂时性请求主线程网络数据而不卡顿 （后面没用到）
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -193,10 +196,47 @@ public class HomeFragment extends Fragment {
                 }
             }
         }).start();
-        // 设置主页面view pager
-        homeViewPager = root.findViewById(R.id.homeViewPager);
-        homeViewNav = root.findViewById(R.id.homeViewNav);
-        setVp();
+
+//        取消了 view pager设计，因为view pager 数据怎么都加载不进去
+//        // 设置主页面view pager
+//        homeViewPager = root.findViewById(R.id.homeViewPager);
+//        homeViewNav = root.findViewById(R.id.homeViewNav);
+//        ArrayList<String> title = new ArrayList<String>();
+//        title.add(this.getString(R.string.home_nav_reco));
+//        title.add(this.getString(R.string.home_nav_mini));
+//        title.add(this.getString(R.string.home_nav_short));
+//        title.add(this.getString(R.string.home_nav_long));
+//
+//        final List<View> viewList = new ArrayList<View>();
+//        View view1 = getLayoutInflater().inflate(R.layout.viewpager_reco,null);
+//        View view2 = getLayoutInflater().inflate(R.layout.viewpager_mini,null);
+//        View view3 = getLayoutInflater().inflate(R.layout.viewpager_short,null);
+//        View view4 = getLayoutInflater().inflate(R.layout.viewpager_long,null);
+//        viewList.add(view1);
+//        viewList.add(view2);
+//        viewList.add(view3);
+//        viewList.add(view4);
+//
+//        ViewPager vp = (ViewPager) homeViewPager;
+//        //设置tab的模式
+//        // homeViewNav.setTabMode(TabLayout.MODE_FIXED);不可滚动的tab
+//        //添加tab选项卡
+//        for (int i = 0; i < title.size(); i++) {
+//            homeViewNav.addTab(homeViewNav.newTab().setText(title.get(i)));
+//        }
+//        //把TabLayout和ViewPager关联起来
+//        homeViewNav.setupWithViewPager(homeViewPager);
+//        //实例化adapter
+//        mAdapter = new HomeViewPagerAdapter(this.getContext(), viewList, title);
+//        //给ViewPager绑定Adapter
+//        homeViewPager.setAdapter(mAdapter);
+//
+//
+//
+//        // 在这里获取view pager 里面的id
+////        home_listview_reco = root.findViewById(R.id.home_listview_reco);
+//        home_listview_reco = viewpager_reco_root.findViewById(R.id.home_listview_reco);
+
 
         // 获取“推荐”页面数据
         new Thread(new Runnable(){
@@ -234,34 +274,43 @@ public class HomeFragment extends Fragment {
             }
         }).start();
 
+        homeListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                House house = houses.get(position);
+//                Toast.makeText(HomeFragment.this.getActivity(), house.getHouse_title(), Toast.LENGTH_SHORT).show();
+                Intent house_detail_active = new Intent(HomeFragment.this.getActivity(), HouseDetailActivity.class);
+                house_detail_active.putExtra("house", new Gson().toJson(house));
+                startActivity(house_detail_active);
+            }
+        });
+
         return root;
     }
 
-    private void setVp() {
-        ArrayList<Integer> pageview = new ArrayList<Integer>();
-        //添加想要切换的界面
-        pageview.add(R.layout.viewpager_reco);
-        pageview.add(R.layout.viewpager_mini);
-        pageview.add(R.layout.viewpager_short);
-        pageview.add(R.layout.viewpager_long);
-        ArrayList<String> title = new ArrayList<String>();
-        title.add(that.getString(R.string.home_nav_reco));
-        title.add(that.getString(R.string.home_nav_mini));
-        title.add(that.getString(R.string.home_nav_short));
-        title.add(that.getString(R.string.home_nav_long));
+    public void setListViewHeightBasedOnChildren(ListView listView) {
 
-        ViewPager vp = (ViewPager) homeViewPager;
-        //设置tab的模式
-        // homeViewNav.setTabMode(TabLayout.MODE_FIXED);不可滚动的tab
-        //添加tab选项卡
-        for (int i = 0; i < title.size(); i++) {
-            homeViewNav.addTab(homeViewNav.newTab().setText(title.get(i)));
+        ListAdapter listAdapter = listView.getAdapter();
+
+        if (listAdapter == null) {
+            return;
         }
-        //把TabLayout和ViewPager关联起来
-        homeViewNav.setupWithViewPager(homeViewPager);
-        //实例化adapter
-        mAdapter = new HomeViewPagerAdapter(this.getContext(), pageview, title);
-        //给ViewPager绑定Adapter
-        homeViewPager.setAdapter(mAdapter);
+
+        int totalHeight = 0;
+
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += (listItem.getMeasuredHeight() + 100);
+
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+
+        listView.setLayoutParams(params);
     }
+
 }
