@@ -8,15 +8,19 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.租客行"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.mine.SettingActivity"></activity>
+        <activity android:name=".ui.login.VerifyActivity" />
+        <activity android:name=".ui.login.WebviewActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
         <activity android:name=".ui.home.HouseDetailActivity" />
         <activity
             android:name=".MainActivity"
