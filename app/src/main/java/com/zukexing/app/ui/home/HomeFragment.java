@@ -1,6 +1,7 @@
 package com.zukexing.app.ui.home;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -101,6 +102,9 @@ public class HomeFragment extends Fragment {
                 // textView.setText(s);
             }
         });
+
+//        SharedPreferences settings = getActivity().getSharedPreferences("User", 0);
+//        settings.edit().clear().commit();
 
         homeTopCity = root.findViewById(R.id.homeTopCity);
         homeTopWeather = root.findViewById(R.id.homeTopWeather);

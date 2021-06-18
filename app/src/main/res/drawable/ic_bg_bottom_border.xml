@@ -3,10 +3,10 @@
   <item>
     <shape>
       <!--边框颜色-->
-      <solid android:color="@color/lightgray"/>
+      <solid android:color="@color/whitesmoke"/>
     </shape>
   </item>
-  <item android:bottom="0.5dp">
+  <item android:bottom="1dp">
     <shape>
       <!--内容颜色-->
       <solid android:color="@color/white"/>

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 允许程序获取网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.租客行"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.mine.SettingActivity"></activity>
+        <activity android:name=".ui.home.PostOrderActivity"></activity>
+        <activity android:name=".ui.mine.VerifiedActivity" />
+        <activity android:name=".ui.mine.UserNickActivity" />
+        <activity android:name=".ui.mine.UserInfoActivity" />
+        <activity android:name=".ui.mine.SettingActivity" />
         <activity android:name=".ui.login.VerifyActivity" />
         <activity android:name=".ui.login.WebviewActivity" />
         <activity

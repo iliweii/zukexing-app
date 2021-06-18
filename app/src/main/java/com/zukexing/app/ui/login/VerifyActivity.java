@@ -79,7 +79,6 @@ public class VerifyActivity extends AppCompatActivity {
                 case 1:
                     String json = (String) msg.obj;
                     Gson gson = new Gson();
-                    System.out.println(json);
                     House house = gson.fromJson(json, House.class);
                     SharedPreferences settings = getSharedPreferences("User", 0);
                     SharedPreferences.Editor editor = settings.edit();

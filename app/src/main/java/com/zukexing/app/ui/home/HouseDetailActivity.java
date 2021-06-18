@@ -5,13 +5,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +28,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zukexing.app.R;
 import com.zukexing.app.pojo.House;
+import com.zukexing.app.ui.login.LoginActivity;
+import com.zukexing.app.ui.mine.VerifiedActivity;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static android.content.ClipData.newIntent;
@@ -78,6 +85,12 @@ public class HouseDetailActivity extends AppCompatActivity {
     private ImageView house_detail_avater;
     private Button house_detail_chatbtn;
 
+    private SharedPreferences settings;
+    private House user;
+
+    private int RentType = 0;
+    private String houseData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,10 +101,24 @@ public class HouseDetailActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
+        SharedPreferences settings = getBaseContext().getSharedPreferences("User", 0);
+        String phone = settings.getString("phone", "");
+        int userid = settings.getInt("userid", 0);
+
+        // 如果没有登录，跳转到登录界面
+        if (userid == 0) {
+            Intent intent = new Intent();
+            intent.setClass(HouseDetailActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        String userjson = settings.getString("user", "");
+        Gson gson = new Gson();
+        user = gson.fromJson(userjson, House.class);
+
         // 获取intent 传递的数据
         Intent intent = getIntent();
-        String houseData = intent.getStringExtra("house");
-        Gson gson = new Gson();
+        houseData = intent.getStringExtra("house");
         House house = gson.fromJson(houseData, House.class);
 
 //        System.out.println(houseData);
@@ -172,6 +199,7 @@ public class HouseDetailActivity extends AppCompatActivity {
         if (house.getShort_price() != null) {
             house_detail_price1.setText("￥" + house.getShort_price() + "/晚");
             house_detail_select1.setText("短期住（已选择）");
+            RentType = 1;
         } else {
             house_detail_price1.setVisibility(GONE);
             house_detail_select1.setVisibility(GONE);
@@ -194,14 +222,17 @@ public class HouseDetailActivity extends AppCompatActivity {
         if (house.getShort_price() != null) {
             house_detail_select1.setText("短期住（已选择）");
             house_book_btn.setText("立即预订（短期住）");
+            RentType = 1;
         } else if (house.getShort_price() == null && house.getLong_price() != null) {
             house_detail_price2.setTextSize(18);
             house_detail_select2.setText("长期租（已选择）");
             house_book_btn.setText("立即预订（长期租）");
+            RentType = 2;
         } else if (house.getShort_price() == null && house.getLong_price() == null) {
             house_detail_price3.setTextSize(18);
             house_detail_select3.setText("时钟住（已选择）");
             house_book_btn.setText("立即预订（时钟住）");
+            RentType = 3;
         }
 
         house_detail_price1.setOnClickListener(new View.OnClickListener() {
@@ -214,6 +245,7 @@ public class HouseDetailActivity extends AppCompatActivity {
                 house_detail_price2.setTextSize(12);
                 house_detail_price3.setTextSize(12);
                 house_book_btn.setText("立即预订（短期住）");
+                RentType = 1;
             }
         });
 
@@ -227,6 +259,7 @@ public class HouseDetailActivity extends AppCompatActivity {
                 house_detail_price2.setTextSize(18);
                 house_detail_price3.setTextSize(12);
                 house_book_btn.setText("立即预订（长期租）");
+                RentType = 2;
             }
         });
 
@@ -240,6 +273,7 @@ public class HouseDetailActivity extends AppCompatActivity {
                 house_detail_price2.setTextSize(12);
                 house_detail_price3.setTextSize(18);
                 house_book_btn.setText("立即预订（时钟住）");
+                RentType = 3;
             }
         });
 
@@ -404,6 +438,48 @@ public class HouseDetailActivity extends AppCompatActivity {
             }
         });
 
+        house_book_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 没有实名认证跳转到实名认证界面
+                if(user.getIs_real() == 0) {
+                    Intent intent = new Intent();
+                    intent.setClass(HouseDetailActivity.this, VerifiedActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+                // 跳转到提交订单界面
+                Intent intent1 = new Intent();
+                intent1.setClass(HouseDetailActivity.this, PostOrderActivity.class);
+                intent1.putExtra("house", houseData);
+                intent1.putExtra("type", RentType);
+                startActivity(intent1);
+//                showDatePickDlg();
+
+            }
+        });
+
+
+    }
+
+    protected void showDatePickDlg() {
+        Calendar calendar = Calendar.getInstance();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(HouseDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//                HouseDetailActivity.this.mEditText.setText(year + "-" + monthOfYear + "-" + dayOfMonth);
+                System.out.println(year + "-" + monthOfYear + "-" + dayOfMonth);
+            }
+        },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        DatePicker datePicker = datePickerDialog.getDatePicker();
+        datePicker.setMaxDate(new Date().getTime() + 30*24*60*60*1000);  ///< 设置日期的上限日期
+        datePicker.setMinDate(new Date().getTime());  ///< 设置日期的下限日期，其中是参数类型是long型，为日期的时间戳
+        datePickerDialog.show();
 
     }
 }

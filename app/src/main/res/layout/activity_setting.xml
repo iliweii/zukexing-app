@@ -9,17 +9,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@color/whitesmoke"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/stdhalfwhite"
+            android:background="@color/white"
             android:orientation="horizontal"
             android:padding="20dp">
 
             <ImageView
-                android:id="@+id/house_detail_back"
+                android:id="@+id/setting_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -27,7 +32,6 @@
                 app:srcCompat="@drawable/ic_back" />
 
             <TextView
-                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -46,28 +50,114 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/setting_notice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="租客行用户服务协议" />
+            android:text="通知与提醒"
+            android:background="@drawable/ic_bg_bottom_border"
+            android:fontFamily="sans-serif-thin"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="15dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
 
         <TextView
-            android:id="@+id/textView4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="安居客隐私政策" />
+            android:layout_height="10dp" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/setting_service"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="关于安居客" />
+            android:background="@drawable/ic_bg_bottom_border"
+            android:fontFamily="sans-serif-thin"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="15dp"
+            android:text="租客行用户服务协议"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/setting_privacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_bg_bottom_border"
+            android:fontFamily="sans-serif-thin"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="15dp"
+            android:text="租客行隐私政策"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/setting_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="关于租客行"
+            android:background="@drawable/ic_bg_bottom_border"
+            android:fontFamily="sans-serif-thin"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="15dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:id="@+id/setting_ver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_bg_bottom_border"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-thin"
+                android:text="当前版本"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/setting_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-thin"
+                android:gravity="right"
+                android:text="1.0"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/setting_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="退出登录" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="退出登录"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

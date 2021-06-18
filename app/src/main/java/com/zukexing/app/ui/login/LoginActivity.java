@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +53,8 @@ public class LoginActivity extends AppCompatActivity {
         final TextView protocol_service = findViewById(R.id.protocol_service);
 
         final ImageView login_close = findViewById(R.id.login_close);
+        final LinearLayout login_wechat = findViewById(R.id.login_wechat);
+        final LinearLayout login_qq = findViewById(R.id.login_qq);
 
         login_close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +132,20 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "请勾选协议", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        login_wechat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "微信登录", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        login_qq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "QQ登录", Toast.LENGTH_SHORT).show();
             }
         });
     }
