@@ -7,10 +7,10 @@
     <string name="saoyisao">扫一扫</string>
 
     <!-- 网络地址路径（需要修改hosts，写反向代理）-->
-        <string name="host">http://zukexing.com/</string>
+    <string name="host">http://zukexing.com/</string>
     <!-- ip地址路径（当前网络ip地址，手机与电脑在同一路由器下，且没有ap隔离）-->
     <!--    <string name="host">http://192.168.1.117:8082/</string>-->
-<!--    <string name="host">http://192.168.43.79:8082/</string>-->
+<!--        <string name="host">http://192.168.45.79:8082/</string>-->
     <string name="amap_key">2783b54aa5662100cae8f7879d9a30fe</string>
     <string name="image_url_house">static/image/house/</string>
     <string name="image_url_avater">static/image/avater/</string>

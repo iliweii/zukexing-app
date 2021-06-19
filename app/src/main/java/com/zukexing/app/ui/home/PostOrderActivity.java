@@ -22,7 +22,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zukexing.app.R;
 import com.zukexing.app.pojo.House;
+import com.zukexing.app.ui.login.WebviewActivity;
 import com.zukexing.app.ui.mine.MineFragment;
+import com.zukexing.app.ui.mine.SettingActivity;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -41,6 +43,7 @@ public class PostOrderActivity extends AppCompatActivity {
     private double dept = 0;
     private double price = 0;
     private double price_total;
+    private String timeInfo = "";
 
     private ImageView post_house_image;
     private TextView post_house_title;
@@ -74,7 +77,6 @@ public class PostOrderActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String housedata = intent.getStringExtra("house");
         int type = intent.getIntExtra("type", 0); // 1短期 2长期 3 时钟
-        System.out.println(housedata);
         house = gson.fromJson(housedata, House.class);
 
         // 获得本地存储数据
@@ -136,6 +138,7 @@ public class PostOrderActivity extends AppCompatActivity {
             post_price_bottom.setText("￥" + price_total);
 
             post_price_info.setText("￥" + price + "/晚 | 共" + 1 + "晚 | 押金￥" + dept);
+            timeInfo = "1晚";
 
             post_indate_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -174,6 +177,7 @@ public class PostOrderActivity extends AppCompatActivity {
             post_price_bottom.setText("￥" + price_total);
 
             post_price_info.setText("￥" + price + "/周 | 共" + 1 + "周 | 押金￥" + dept);
+            timeInfo = "1周";
 
             post_indate_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -212,6 +216,7 @@ public class PostOrderActivity extends AppCompatActivity {
             post_price_bottom.setText("￥" + price_total);
 
             post_price_info.setText("￥" + price + "/时 | 共" + 1 + "时 | 押金￥" + dept);
+            timeInfo = "1时";
 
             post_indate_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -238,7 +243,52 @@ public class PostOrderActivity extends AppCompatActivity {
         post_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PostOrderActivity.this, "提交订单", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PostOrderActivity.this, "提交订单", Toast.LENGTH_SHORT).show();
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String startTime = null, endTime = null;
+                if (type != 3) {
+                    try {
+                        Date startDate = format.parse(post_indate.getText().toString());
+                        Date endDate = format.parse(post_outdate.getText().toString());
+                        startDate.setHours(14);
+                        endDate.setHours(12);
+                        startTime = formatter.format(startDate);
+                        endTime = formatter.format(endDate);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    String startHour = post_indate.getText().toString().split("时")[0];
+                    String endHour = post_outdate.getText().toString().split("时")[0];
+                    Date startDate = new Date(), endDate = new Date();
+                    startDate.setHours(Integer.parseInt(startHour));
+                    endDate.setHours(Integer.parseInt(endHour));
+                    startDate.setMinutes(0);
+                    endDate.setMinutes(0);
+                    startDate.setSeconds(0);
+                    endDate.setSeconds(0);
+                    startTime = formatter.format(startDate);
+                    endTime = formatter.format(endDate);
+                }
+                if (startTime == null || endTime == null) {
+                    Toast.makeText(PostOrderActivity.this, "日期出错啦", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Intent intent = new Intent();
+                intent.setClass(PostOrderActivity.this, PayActivity.class);
+                intent.putExtra("userId", user.getUser_id());
+                intent.putExtra("houseId", house.getHouse_id());
+                intent.putExtra("startTime", startTime);
+                intent.putExtra("endTime", endTime);
+                intent.putExtra("pay", new BigDecimal(price_total).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()); // 总付款(保留两位小数)
+                intent.putExtra("payH", price);
+                intent.putExtra("payD", dept);
+
+                intent.putExtra("info", post_indate.getText().toString() + " - " + post_outdate.getText().toString() + "入住" + timeInfo);
+
+                PostOrderActivity.this.startActivity(intent);
+                finish();
             }
         });
 
@@ -293,6 +343,7 @@ public class PostOrderActivity extends AppCompatActivity {
                     post_price_total.setText("￥" + price_total);
                     post_price_bottom.setText("￥" + price_total);
                     post_price_info.setText("￥" + price + "/晚 | 共" + daydiff + "晚 | 押金￥" + dept);
+                    timeInfo = daydiff + "晚";
                 } else {
                     // 长期 计算相隔天数 ，得出相隔周数 得价格
                     long dayin = 0, dayout = 0, daydiff = 0;
@@ -309,6 +360,7 @@ public class PostOrderActivity extends AppCompatActivity {
                     post_price_total.setText("￥" + price_total);
                     post_price_bottom.setText("￥" + price_total);
                     post_price_info.setText("￥" + price + "/周 | 共" + new BigDecimal(weekdiff).setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue() + "周 | 押金￥" + dept);
+                    timeInfo = new BigDecimal(weekdiff).setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue() + "周";
                 }
                 post_date_info.setText(post_indate.getText().toString() + " - " + post_outdate.getText().toString() + " 房费");
 
@@ -382,6 +434,7 @@ public class PostOrderActivity extends AppCompatActivity {
                 post_price_bottom.setText("￥" + price_total);
                 post_date_info.setText(post_indate.getText().toString() + " - " + post_outdate.getText().toString() + " 房费");
                 post_price_info.setText("￥" + price + "/时 | 共" + hourdiff + "时 | 押金￥" + dept);
+                timeInfo = hourdiff + "时";
             }
         },
                 calendar.get(Calendar.HOUR_OF_DAY),

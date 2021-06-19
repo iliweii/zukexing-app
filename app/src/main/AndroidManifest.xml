@@ -16,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.租客行"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.home.PostOrderActivity"></activity>
+        <activity android:name=".ui.dashboard.OrderDetailActivity"></activity>
+        <activity android:name=".ui.dashboard.OrderActivity" />
+        <activity android:name=".ui.home.PayDoneActivity" />
+        <activity android:name=".ui.home.PayActivity" />
+        <activity android:name=".ui.home.PostOrderActivity" />
         <activity android:name=".ui.mine.VerifiedActivity" />
         <activity android:name=".ui.mine.UserNickActivity" />
         <activity android:name=".ui.mine.UserInfoActivity" />

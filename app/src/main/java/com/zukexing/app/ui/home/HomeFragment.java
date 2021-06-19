@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -114,6 +115,14 @@ public class HomeFragment extends Fragment {
         that = this;
 
         homeListview = root.findViewById(R.id.homeListview);
+
+        final LinearLayout homeMyHouse = root.findViewById(R.id.homeMyHouse);
+//        homeMyHouse.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
 
         // 暂时性请求主线程网络数据而不卡顿 （后面没用到）
@@ -305,7 +314,7 @@ public class HomeFragment extends Fragment {
         for (int i = 0; i < listAdapter.getCount(); i++) {
             View listItem = listAdapter.getView(i, null, listView);
             listItem.measure(0, 0);
-            totalHeight += (listItem.getMeasuredHeight() + 100);
+            totalHeight += (listItem.getMeasuredHeight() + 60);
 
         }
 
