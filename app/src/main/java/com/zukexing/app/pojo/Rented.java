@@ -20,6 +20,24 @@ public class Rented {
     private String house_local;
     private String house_require;
     private String house_img;
+    private String real_name;
+    private String user_phone;
+
+    public String getReal_name() {
+        return real_name;
+    }
+
+    public void setReal_name(String real_name) {
+        this.real_name = real_name;
+    }
+
+    public String getUser_phone() {
+        return user_phone;
+    }
+
+    public void setUser_phone(String user_phone) {
+        this.user_phone = user_phone;
+    }
 
     public int getRented_id() {
         return rented_id;
